@@ -20,7 +20,10 @@ COPY . /app/
 # Expose the port that the Django app runs on
 EXPOSE 8000
 
+RUN python3 manage.py makemigrations
+RUN python3 manage.py migrate
+
 # Define the command to run the Django server
-# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "todo_webapp.wsgi:application"]
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "todo_webapp.wsgi:application"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
