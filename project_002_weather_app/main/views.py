@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.conf import settings
+
 # import json to load json data to python dictionary 
-import json 
 # urllib.request to make a request to api 
-import urllib.request
 import urllib.parse
 
+# import exception for requests petition
 from urllib.error import HTTPError
+
+import requests
 
 
 # Create your views here.
@@ -32,17 +34,18 @@ def index(request):
         
         # using try catch to avoid hhtp exception        
         try:
-            source = urllib.request.urlopen(url=url).read()
+            # source = urllib.request.urlopen(url=url).read()
+            source = requests.get(url)
         except HTTPError:
             return render(request, "main/index.html", data) 
 
         # print(source)
         # print(source.getcode())
-        if source.getcode() == 404:
+        if source.status_code == 404:
             return render(request, "main/index.html", data)
 
         # converting JSON data to a dictionary 
-        list_of_data = json.loads(source)
+        list_of_data = source.json()
   
         # data for variable list_of_data 
         data = { 
