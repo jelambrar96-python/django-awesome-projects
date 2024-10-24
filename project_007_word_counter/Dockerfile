@@ -24,6 +24,6 @@ RUN python3 manage.py makemigrations
 RUN python3 manage.py migrate
 
 # Define the command to run the Django server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "todo_webapp.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "wordcounter.wsgi:application"]
 # CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
