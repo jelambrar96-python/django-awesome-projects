@@ -128,6 +128,34 @@ For production deployment, it's recommended to use Gunicorn as the WSGI HTTP Ser
    gunicorn --bind 0.0.0.0:8000 todo_webapp.wsgi:application
    ```
 
+## user manual
+
+This would be a general view of the page when running:
+
+![page overview](media/Screen1.png)
+
+We test the functioning of the page.
+
+First we will add a task and we give it submit:
+
+![page add task](media/Screen2.png)
+
+The task will be added to the list:
+
+![view task](media/Screen3.png)
+
+If you want you can remove it:
+
+![page add task](media/Screen4.png)
+
+and the task is removed:
+
+![page add task](media/Screen5.png)
+
+Finally we would like to conclude that multiple tasks can be added:
+
+![page add task](media/Screen6.png)
+
 ### Note
 
 Make sure to configure the `ALLOWED_HOSTS` in `settings.py` when deploying to production.
