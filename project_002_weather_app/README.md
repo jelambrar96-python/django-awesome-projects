@@ -47,6 +47,11 @@ DJANGO_SECRET_KEY="your_django_secret_key"
 # Django Debug Mode: True or False
 DJANGO_DEBUG=True
 ```
+### Create django secret key
+
+```bash
+python3 -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
 
 ### Step 5: Directory Structure
 Ensure that the folder structure of the project looks like this:
@@ -98,6 +103,36 @@ python manage.py runserver
 ```
 
 Visit `http://127.0.0.1:8000/` to view and interact with the Weather App.
+
+
+## user manual
+
+This would be a general view of the page when running:
+
+![page overview](media/Screen1.png)
+
+We test the functioning of the page.
+
+First you will be able to search for a city:
+
+![page add task](media/Screen2.png)
+
+In the search you can see:
+ - country code
+ - Coordenate
+ - temp
+ - pressure
+ - humidity
+
+![view task](media/Screen3.png)
+
+And you can do other searches:
+
+![page add task](media/Screen4.png)
+
+Finally, all searches are saved:
+
+![page add task](media/Screen5.png)
 
 
 ## Credits
