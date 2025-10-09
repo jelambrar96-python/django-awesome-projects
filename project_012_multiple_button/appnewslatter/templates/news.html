@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>NewsLatter</title>
+  </head>
+  
+  <body>
+  
+  <!--showing success message-->
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+              {{ message }}</li>
+        {% endfor %}
+    </ul>
+   {% endif %}
+    
+   <!--Form with multiple submit buttons-->
+   <form action="" method="POST">
+      {% csrf_token %}
+     <label for="email">Enter your email:</label>
+     <input type="email" id="email" name="email" />
+      <br> <br>
+     <button type="submit" name="subscribe">Subscribe</button>
+     <button type="submit" name="unsubscribe">Unsubscribe</button>
+   </form>
+  
+  </body>
+</html>
