@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block start %}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+
+</style>
+
+
+<div class="container mt-5 col-5">
+
+  <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+   
+    <div class="form-group">
+      <label for="exampleInputDatetime">Day-Time </label>
+      <input type="datetime-local" name="day" value="{{ recipe.day|date:'Y-m-d\\TH:i' }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputName">Recipe </label>
+      <input name="name" type="text" value="{{recipe.name}}" 
+        required>
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputDescription">Description </label>
+      <textarea name="description" rows="5" cols="30" required>{{ recipe.description }}</textarea>
+    </div>
+    <br> 
+    <br>
+
+    <button type="submit" >Update Data</button>
+  </form>
+
+
+</div>
+
+{% endblock %}
