@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Success{% endblock %}
+
+{% block content %}
+<h2>Upload Successful</h2>
+<p>Your file has been uploaded successfully!</p>
+<p><a href="{% url 'check' %}">Go back to Add Image</a></p>
+{% endblock %}
