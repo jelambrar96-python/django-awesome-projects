@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}All Data{% endblock %}
+
+{% block content %}
+<h2>All Stored Data</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td><a href="{{ item.image_url }}" target="_blank">{{ item.image_name }}</a></td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.description }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p><a href="{% url 'check' %}">Go back to Add Image</a></p>
+{% endblock %}
