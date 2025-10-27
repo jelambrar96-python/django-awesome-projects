@@ -1,18 +1,17 @@
 services:
 
-  flask-app:
+  django:
     build: 
       context: .
       dockerfile: Dockerfile
+    container_name: dap003_blogging_platform
+    env_file:
+      - .env
     environment:
       - DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
       - DJANGO_DEBUG=$DJANGO_DEBUG
       - DJANGO_SUPERUSER_USERNAME=$DJANGO_SUPERUSER_USERNAME
       - DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD
       - DJANGO_SUPERUSER_EMAIL=$DJANGO_SUPERUSER_EMAIL
-    # volumes:
-    #   - ./run.sh:/app/run.sh
     ports:
       - 8000:8000
-    command: bash run.sh
-
