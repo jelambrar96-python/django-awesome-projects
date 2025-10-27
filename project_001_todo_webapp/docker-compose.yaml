@@ -1,0 +1,12 @@
+services:
+  todo_webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dap_todo_webapp
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_SECRET_KEY: $DJANGO_SECRET_KEY
+      DJANGO_DEBUG: $DJANGO_DEBUG
+    command: ["gunicorn", "--bind", "0.0.0.0:8000", "todo_webapp.wsgi:application"]
