@@ -8,5 +8,5 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 python manage.py createsuperuser --noinput
 
-exec "$@"
+gunicorn --bind 0.0.0.0:8000 blogging_platform.wsgi:application
 # python3 manage.py runserver "0.0.0.0:8000"
