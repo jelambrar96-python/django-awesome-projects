@@ -1,3 +1,6 @@
-#/bin/bash
-docker build -t django-todo-app .  && \
-    docker run -p 8000:8000 django-todo-app
+#!/bin/bash
+
+python3 manage.py makemigrations
+python3 manage.py migrate --noinput
+
+exec "$@"
