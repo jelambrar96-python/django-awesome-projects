@@ -5,6 +5,9 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+# Create a non-root user and group
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
 # Set the working directory in the container
 WORKDIR /app
 
@@ -14,16 +17,23 @@ COPY requirements.txt /app/
 # Install any necessary dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the current directory contents into the container at /url_short
-COPY . /app/
-
 # Expose the port that the Django app runs on
 EXPOSE 8000
 
-RUN python3 manage.py makemigrations
-RUN python3 manage.py migrate
+
+# Copy the current directory contents into the container at /app
+COPY . /app/
+
+# Change ownership of the /app directory to appuser
+RUN chown -R appuser:appuser /app
+
+# Switch to the non-root user
+USER appuser
+
+
+# Make entrypoint.sh and run.sh executable
+RUN chmod +x /app/run.sh
 
 # Define the command to run the Django server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "imageupload.wsgi:application"]
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-
+ENTRYPOINT [ "./run.sh" ]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "core.wsgi:application"]
