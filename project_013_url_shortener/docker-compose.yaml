@@ -1,0 +1,16 @@
+services:
+
+  image_gallery:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: dap013_url_shortener
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
+      - DJANGO_DEBUG=$DJANGO_DEBUG
+    volumes:
+      - ./media:/app/media
+    ports:
+      - 8000:8000
