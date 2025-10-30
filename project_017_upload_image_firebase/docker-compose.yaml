@@ -1,0 +1,20 @@
+services:
+
+  image_gallery:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: dap017_upload_image_firebase
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
+      - DJANGO_DEBUG=$DJANGO_DEBUG
+      - FIREBASE_CREDENTIALS_FILE=$FIREBASE_CREDENTIALS_FILE
+      - FIREBASE_BUCKET_NAME=$FIREBASE_BUCKET_NAME
+    volumes:
+      - ./media:/app/media
+    ports:
+      - 8000:8000
+    command: bash run.sh
+
