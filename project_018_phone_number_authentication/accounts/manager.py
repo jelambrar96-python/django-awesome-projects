@@ -10,6 +10,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+
     def superuser(self, phone, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
