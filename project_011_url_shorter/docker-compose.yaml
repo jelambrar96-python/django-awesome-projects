@@ -1,0 +1,19 @@
+services:
+
+  image_gallery:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: dap005_image_gallery
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
+      - DJANGO_DEBUG=$DJANGO_DEBUG
+      - BITLY_ACCESS_TOKEN=$BITLY_ACCESS_TOKEN
+    volumes:
+      - ./media:/app/media
+    ports:
+      - 8000:8000
+    command: bash run.sh
+

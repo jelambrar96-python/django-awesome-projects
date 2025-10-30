@@ -1,0 +1,19 @@
+services:
+
+  image_gallery:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: dap014_email_sender
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
+      - DJANGO_DEBUG=$DJANGO_DEBUG
+      - EMAIL_HOST_USER=$EMAIL_HOST_USER
+      - EMAIL_HOST_PASSWORD=$EMAIL_HOST_PASSWORD
+    volumes:
+      - ./media:/app/media
+    ports:
+      - 8000:8000
+
