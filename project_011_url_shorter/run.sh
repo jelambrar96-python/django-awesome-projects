@@ -1,3 +1,6 @@
-#/bin/bash
-docker build -t django-url-shorter-app .  && \
-    docker run -p 8000:8000 django-url-shorter-app
+#!/bin/bash
+
+python3 manage.py makemigrations
+python3 manage.py migrate --noinput
+
+exec "$@"
