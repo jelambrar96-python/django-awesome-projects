@@ -34,4 +34,4 @@ RUN chmod +x /app/run.sh
 
 # Define the command to run the Django server
 ENTRYPOINT [ "./run.sh" ]
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "translator.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "core.wsgi:application"]
