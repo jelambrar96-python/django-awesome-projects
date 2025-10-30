@@ -1,3 +1,11 @@
-#/bin/bash
-docker build -t django-wikipedia-app .  && \
-    docker run -p 8000:8000 django-wikipedia-app
+#!/bin/bash
+
+# echo username $DJANGO_SUPERUSER_USERNAME
+# echo password $DJANGO_SUPERUSER_PASSWORD
+# echo email $DJANGO_SUPERUSER_EMAIL
+
+python3 manage.py makemigrations
+python3 manage.py migrate
+python manage.py createsuperuser --noinput
+
+exec "$@"
